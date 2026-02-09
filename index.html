@@ -1,7 +1,8 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Keenetic NFQWS v2</title>
+    <title>Keenetic NFQWS</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
     <link rel="apple-touch-icon" href="icon.png">
@@ -27,11 +28,14 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/addon/edit/matchbrackets.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/addon/edit/closebrackets.min.js"></script>
 
-    <script defer src="tln.min.js?v=v2.10.8"></script>
-    <script defer src="script.js?v=v2.10.8" type="module"></script>
-
+    <!-- CSS файлы -->
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/utilities.css">
     <link rel="stylesheet" href="tln.min.css?v=v2.10.8">
-    <link rel="stylesheet" href="style.css?v=v2.10.8">
+
+    <script defer src="tln.min.js?v=v2.10.8"></script>
 </head>
 <body class="unknown">
 <script>
@@ -74,7 +78,7 @@
                     document.getElementById('version').textContent = versionText;
                     
                     // Устанавливаем заголовок
-                    const title = data.nfqws2 ? 'nfqws2-keenetic' : 'nfqws-keenetic';
+                    const title = data.nfqws2 ? 'Keenetic NFQWS 2' : 'Keenetic NFQWS';
                     const logoElement = document.querySelector('.logo');
                     logoElement.innerHTML = `<span id="nfqws">${title}</span> <span id="status"></span>`;
                 } else {
@@ -94,7 +98,7 @@
 
 <header>
     <h1 class="logo">
-        <span id="nfqws">Keenetic NFQWS v2</span> <span id="status"></span>
+        <span id="nfqws">Keenetic NFQWS</span> <span id="status"></span>
     </h1>
     <div class="header-controls">
         <!-- Кнопка Save - скрыта по умолчанию, показывается при изменении -->
@@ -205,25 +209,18 @@
 
 <footer>
     <div class="footer-left">
-        <a class="footer-tab" href="https://github.com/nfqws/nfqws2-keenetic/" target="_blank">
+        <a class="footer-tab" href="https://github.com/nfqws/nfqws-keenetic/" target="_blank">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
             </svg>
-            nfqws
+            NFQWS 2
         </a>
-        <a class="footer-tab" href="https://github.com/disasdter/Keenetic-NFQWSv2-Theme" target="_blank">
+		
+		 <a class="footer-tab" href="https://github.com/disasdter/Keenetic-NFQWSv2-Theme" target="_blank">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="2"/>
-                <path d="M12 2v2" stroke="currentColor" stroke-width="2"/>
-                <path d="M12 20v2" stroke="currentColor" stroke-width="2"/>
-                <path d="M4.93 4.93l1.41 1.41" stroke="currentColor" stroke-width="2"/>
-                <path d="M17.66 17.66l1.41 1.41" stroke="currentColor" stroke-width="2"/>
-                <path d="M2 12h2" stroke="currentColor" stroke-width="2"/>
-                <path d="M20 12h2" stroke="currentColor" stroke-width="2"/>
-                <path d="M6.34 17.66l-1.41 1.41" stroke="currentColor" stroke-width="2"/>
-                <path d="M19.07 4.93l-1.41 1.41" stroke="currentColor" stroke-width="2"/>
+                <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
             </svg>
-            Theme
+            THEME 2
         </a>
     </div>
     
@@ -361,8 +358,8 @@
         <div class="results-container" id="results-container"></div>
     </div>
     <div class="popup-footer">
-        <button class="popup-close" id="availability-retry">Retry Check</button>
-        <button class="popup-yes" id="availability-close">Close</button>
+        <button class="popup-yes" id="availability-start">Start Check</button>
+        <button class="popup-close" id="availability-close">Close</button>
     </div>
 </div>
 
@@ -384,6 +381,12 @@
         <button class="popup-yes" id="login-button">Login</button>
     </div>
 </div>
+
+<!-- Подключаем JS файлы -->
+<script defer src="js/helpers.js"></script>
+<script defer src="js/drag-drop.js"></script>
+<script defer src="js/dom-checker.js"></script>
+<script defer src="js/ui.js"></script>
 
 </body>
 </html>

@@ -1,0 +1,538 @@
+/* Адаптивные стили для кнопок с иконками */
+.save-icon,
+.create-file-icon,
+.restart-icon {
+    position: relative;
+}
+
+.save-text,
+.create-file-text,
+.restart-text {
+    transition: opacity 0.3s ease;
+}
+
+/* Drag & Drop улучшения */
+.drag-ghost {
+    position: fixed;
+    z-index: 10000;
+    pointer-events: none;
+    opacity: 0.8;
+    transform: rotate(3deg);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.drag-ghost::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border: 2px dashed var(--color-accent);
+    border-radius: var(--radius-md);
+}
+
+.drop-indicator {
+    position: relative;
+}
+
+.drop-indicator::before {
+    content: '';
+    position: absolute;
+    left: -8px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 4px;
+    height: 20px;
+    background: var(--color-accent);
+    border-radius: 2px;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.drop-indicator.active::before {
+    opacity: 1;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    body {
+        padding: 8px;
+        gap: 8px;
+    }
+    
+    header, nav, footer, .editor-container {
+        border-radius: 12px;
+    }
+    
+    .logo {
+        font-size: 16px;
+    }
+    
+    /* Увеличенные кнопки на мобильных устройствах */
+    .button {
+        padding: 12px 16px;
+        font-size: 14px;
+        min-height: 44px;
+        border-radius: 10px;
+    }
+    
+    /* Прячем текст на кнопках на мобильных */
+    .save-text,
+    .create-file-text,
+    .restart-text,
+    #save-fs-text {
+        display: none;
+    }
+    
+    /* Увеличенные вкладки конфигов */
+    .nav-tab {
+        padding: 10px 14px;
+        font-size: 13px;
+        height: 44px;
+        border-radius: 10px;
+        min-width: fit-content;
+        max-width: 200px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    
+    .nav-tab-text {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        flex: 1;
+        min-width: 0;
+    }
+    
+    /* Увеличенные иконки во вкладках */
+    .nav-trash,
+    .nav-clear {
+        width: 24px;
+        height: 24px;
+        margin-left: 6px;
+        flex-shrink: 0;
+    }
+    
+    .nav-trash img,
+    .nav-clear img {
+        width: 18px !important;
+        height: 18px !important;
+    }
+    
+    .nav-tab[data-filename$=".conf"],
+    .nav-tab[data-filename*=".conf-"],
+    .nav-tab[data-filename$=".list"],
+    .nav-tab[data-filename*=".list-"],
+    .nav-tab[data-filename$=".log"] {
+        padding-left: 36px;
+    }
+    
+    .nav-tab[data-filename$=".conf"]::before,
+    .nav-tab[data-filename*=".conf-"]::before,
+    .nav-tab[data-filename$=".list"]::before,
+    .nav-tab[data-filename*=".list-"]::before,
+    .nav-tab[data-filename$=".log"]::before {
+        left: 10px;
+        width: 16px;
+        height: 16px;
+    }
+    
+    /* Увеличенные иконки в кнопках */
+    .save-icon svg,
+    .create-file-icon svg,
+    .restart-icon svg {
+        width: 20px;
+        height: 20px;
+    }
+    
+    .save-icon,
+    .create-file-icon,
+    .restart-icon {
+        width: 48px;
+        padding: 0;
+        justify-content: center;
+        min-height: 48px;
+    }
+    
+    /* Увеличенный dropdown */
+    #dropdown {
+        width: 44px;
+        min-height: 44px;
+    }
+    
+    #dropdown svg {
+        width: 18px;
+        height: 18px;
+    }
+    
+    /* Увеличенный dropdown menu */
+    .dropdown-menu {
+        min-width: 180px;
+        padding: 10px;
+    }
+    
+    .dropdown-item {
+        padding: 10px 14px;
+        font-size: 14px;
+        border-radius: 8px;
+    }
+    
+    .dropdown-item svg {
+        width: 16px;
+        height: 16px;
+    }
+    
+    /* Увеличенные элементы футера */
+    footer {
+        flex-direction: column;
+        gap: 10px;
+        padding: 10px;
+    }
+    
+    .footer-left,
+    .footer-right {
+        width: 100%;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+    
+    .footer-tab {
+        padding: 8px 12px;
+        font-size: 13px;
+        min-height: 36px;
+    }
+    
+    .footer-tab svg {
+        width: 16px;
+        height: 16px;
+    }
+    
+    /* Увеличенная кнопка проверки доступности */
+    #check-availability {
+        padding: 8px 12px;
+        font-size: 13px;
+        height: 36px;
+        min-width: 40px;
+    }
+    
+    #check-availability svg {
+        width: 16px;
+        height: 16px;
+    }
+    
+    /* Увеличенные иконки в редакторе */
+    .icon-button {
+        width: 36px;
+        height: 36px;
+    }
+    
+    .icon-button svg {
+        width: 16px;
+        height: 16px;
+    }
+    
+    /* Увеличенная панель инструментов редактора */
+    .editor-toolbar {
+        padding: 10px;
+        min-height: 52px;
+        height: 52px;
+    }
+    
+    .filename {
+        font-size: 12px;
+        padding: 6px 10px;
+    }
+    
+    .popup {
+        width: calc(100% - 20px);
+        max-width: none;
+        border-radius: 12px;
+    }
+    
+    /* Responsive adjustments for availability popup */
+    .availability-info {
+        padding: 12px;
+    }
+    
+    .info-row {
+        font-size: 13px;
+    }
+    
+    .results-container {
+        max-height: 200px;
+    }
+    
+    .domain-result {
+        padding: 8px 10px;
+        font-size: 12px;
+    }
+    
+    .domain-status {
+        min-width: 80px;
+    }
+    
+    #check-availability-text {
+        display: none;
+    }
+    
+    #check-availability svg {
+        margin-right: 0;
+    }
+    
+    .availability-info {
+        flex-direction: column;
+        gap: 8px;
+        padding: 10px;
+    }
+    
+    .results-container {
+        max-height: 150px;
+    }
+    
+    .create-file-form {
+        gap: 12px;
+    }
+    
+    .form-input {
+        padding: 12px;
+        font-size: 15px;
+        min-height: 44px;
+    }
+    
+    .radio-label {
+        padding: 10px;
+    }
+    
+    /* Увеличенные кнопки в попапах */
+    .popup-yes,
+    .popup-no,
+    .popup-close {
+        padding: 10px 16px;
+        font-size: 14px;
+        min-height: 40px;
+    }
+    
+    /* Увеличенные поля ввода в форме логина */
+    .login-input {
+        padding: 14px;
+        font-size: 16px;
+        min-height: 48px;
+    }
+    
+    #login-button {
+        min-height: 44px;
+        font-size: 15px;
+    }
+    
+    /* Увеличенные элементы в форме создания файла */
+    .create-file-popup .form-input {
+        padding: 14px;
+        font-size: 16px;
+        min-height: 48px;
+    }
+    
+    .create-file-popup .popup-yes,
+    .create-file-popup .popup-close {
+        min-height: 42px;
+        font-size: 15px;
+    }
+}
+
+@media (min-width: 769px) {
+    .save-text,
+    .create-file-text,
+    .restart-text,
+    #save-fs-text {
+        display: inline;
+    }
+    
+    .save-icon,
+    .create-file-icon,
+    .restart-icon {
+        width: auto;
+        padding: 10px 20px;
+        justify-content: flex-start;
+    }
+    
+    /* Для десктопов: вкладки с подрезанием длинных имен */
+    .nav-tab {
+        max-width: 250px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+}
+
+@media (max-width: 480px) {
+    html {
+        font-size: 13px;
+    }
+    
+    body {
+        padding: 6px;
+        gap: 6px;
+    }
+    
+    header, nav, footer, .editor-container {
+        border-radius: 10px;
+    }
+    
+    .header-controls {
+        gap: 6px;
+    }
+    
+    /* Еще больше увеличиваем на очень маленьких экранах */
+    .button {
+        padding: 10px 14px;
+        font-size: 13px;
+        min-height: 42px;
+    }
+    
+    .nav-tab {
+        padding: 8px 12px;
+        font-size: 12px;
+        height: 42px;
+        max-width: 180px;
+    }
+    
+    #dropdown {
+        width: 42px;
+        min-height: 42px;
+    }
+    
+    .save-icon,
+    .create-file-icon,
+    .restart-icon {
+        width: 46px;
+        min-height: 46px;
+    }
+    
+    .editor-toolbar {
+        padding: 8px;
+    }
+    
+    .filename {
+        font-size: 11px;
+    }
+    
+    /* Анимация для статусных изменений */
+    @keyframes statusChange {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.2); }
+        100% { transform: scale(1); }
+    }
+    
+    body.running #status,
+    body:not(.running) #status {
+        animation: statusChange 0.3s ease;
+    }
+    
+    /* Loading animation */
+    @keyframes shimmer {
+        0% { background-position: -200px 0; }
+        100% { background-position: 200px 0; }
+    }
+    
+    .loading {
+        background: linear-gradient(90deg, 
+            var(--color-border-light) 25%, 
+            var(--color-surface) 50%, 
+            var(--color-border-light) 75%);
+        background-size: 200px 100%;
+        animation: shimmer 1.5s infinite linear;
+    }
+    
+    /* Click animation for logout */
+    @keyframes logoutClick {
+        0% { transform: scale(1); }
+        50% { transform: scale(0.95); }
+        100% { transform: scale(1); }
+    }
+    
+    #logout:active {
+        animation: logoutClick 0.2s ease;
+    }
+    
+    /* Notification animations */
+    @keyframes notificationSlideIn {
+        from {
+            transform: translateX(100%);
+            opacity: 0;
+        }
+        to {
+            transform: translateX(0);
+            opacity: 1;
+        }
+    }
+    
+    @keyframes notificationSlideOut {
+        from {
+            transform: translateX(0);
+            opacity: 1;
+        }
+        to {
+            transform: translateX(100%);
+            opacity: 0;
+        }
+    }
+    
+    .notification {
+        animation: notificationSlideIn 0.3s ease;
+    }
+    
+    /* Touch-friendly styles for mobile */
+    @media (hover: none) and (pointer: coarse) {
+        .button,
+        .nav-tab,
+        .footer-tab,
+        .dropdown-item,
+        .icon-button,
+        .popup-yes,
+        .popup-no,
+        .popup-close {
+            -webkit-tap-highlight-color: rgba(0, 122, 255, 0.1);
+        }
+        
+        .button:active,
+        .nav-tab:active,
+        .footer-tab:active,
+        .dropdown-item:active,
+        .icon-button:active,
+        .popup-yes:active,
+        .popup-no:active,
+        .popup-close:active {
+            transform: scale(0.98);
+            transition: transform 0.1s ease;
+        }
+        
+        /* Увеличиваем минимальный размер для касаний */
+        .button {
+            min-width: 44px;
+            min-height: 44px;
+        }
+        
+        .nav-tab {
+            min-height: 44px;
+        }
+        
+        .footer-tab {
+            min-height: 36px;
+            min-width: 36px;
+        }
+        
+        .icon-button {
+            min-width: 44px;
+            min-height: 44px;
+        }
+    }
+    
+    /* Для iOS Safari */
+    @supports (-webkit-touch-callout: none) {
+        .button,
+        .nav-tab,
+        .footer-tab {
+            cursor: pointer;
+        }
+    }
+}

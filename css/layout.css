@@ -1,0 +1,269 @@
+body {
+    display: flex;
+    flex-direction: column;
+    padding: var(--space-md);
+    gap: var(--space-md);
+    overflow: hidden;
+}
+
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--space-sm) var(--space-md);
+    background: var(--color-surface);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    border: 0px solid var(--color-border);
+    transition: all var(--transition-base);
+    min-height: 60px;
+    z-index: 10;
+}
+
+header:hover {
+    box-shadow: var(--shadow-md);
+}
+
+.header-controls {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    position: relative;
+}
+
+nav {
+    display: flex;
+    gap: var(--space-xs);
+    padding: var(--space-sm);
+    background: var(--color-surface);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    border: 0px solid var(--color-border);
+    overflow-x: auto;
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-scrollbar) transparent;
+    min-height: 50px;
+}
+
+nav::-webkit-scrollbar {
+    height: 4px;
+}
+
+nav::-webkit-scrollbar-track {
+    background: transparent;
+    border-radius: var(--radius-sm);
+}
+
+nav::-webkit-scrollbar-thumb {
+    background: var(--color-scrollbar);
+    border-radius: var(--radius-sm);
+}
+
+article {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    position: relative;
+}
+
+.editor-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background: var(--color-surface);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    border: 0px solid var(--color-border);
+    overflow: hidden;
+    transition: all var(--transition-slow) cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 1;
+    position: relative;
+}
+
+.editor-container.fullscreen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 10000;
+    border-radius: 0;
+    border: none;
+    background: var(--color-surface);
+    animation: fullscreenExpand 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.editor-container.fullscreen.closing {
+    animation: fullscreenShrink 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes fullscreenExpand {
+    0% {
+        transform: scale(0.98);
+        opacity: 0.8;
+        border-radius: var(--radius-lg);
+    }
+    50% {
+        transform: scale(1.02);
+        opacity: 0.9;
+        border-radius: var(--radius-md);
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+        border-radius: 0;
+    }
+}
+
+@keyframes fullscreenShrink {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+        border-radius: 0;
+    }
+    50% {
+        transform: scale(1.02);
+        opacity: 0.9;
+        border-radius: var(--radius-md);
+    }
+    100% {
+        transform: scale(0.98);
+        opacity: 0.8;
+        border-radius: var(--radius-lg);
+    }
+}
+
+body.fullscreen-active {
+    overflow: hidden;
+}
+
+body.fullscreen-active header,
+body.fullscreen-active nav,
+body.fullscreen-active footer {
+    opacity: 0;
+    transform: translateY(-20px);
+    pointer-events: none;
+    transition: all 0.3s ease;
+}
+
+.editor-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--space-sm) var(--space-md);
+    background: var(--color-surface-alt);
+    border-bottom: 0px solid var(--color-border-light);
+    min-height: 50px;
+    height: 50px;
+    flex-shrink: 0;
+}
+
+.editor-actions {
+    display: flex;
+    gap: var(--space-xs);
+    align-items: center;
+    height: 100%;
+}
+
+.textarea-container {
+    flex: 1;
+    overflow: hidden;
+    position: relative;
+}
+
+#config {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+    background: transparent;
+    font-family: var(--font-mono);
+    font-size: 13px;
+    line-height: 1.6;
+    color: transparent;
+    caret-color: var(--color-text);
+    resize: none;
+    padding: var(--space-md);
+    outline: none;
+    z-index: 1;
+}
+
+/* КРИТИЧЕСКОЕ ИСПРАВЛЕНИЕ: Для CodeMirror - точное позиционирование */
+.CodeMirror {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    font-family: var(--font-mono) !important;
+    font-size: 13px !important;
+    line-height: 1.6em !important; /* Используем em для точности */
+    background: var(--color-surface) !important;
+    color: var(--color-text) !important;
+    z-index: 2;
+}
+
+/* Точное выравнивание строк */
+.CodeMirror-lines {
+    padding: 0 !important;
+}
+
+.CodeMirror-line {
+    padding: 0 !important;
+    padding-left: 4px !important;
+}
+
+.CodeMirror-gutter-wrapper {
+    position: absolute !important;
+    top: 0 !important;
+}
+
+.CodeMirror-gutter-elt {
+    position: absolute !important;
+    top: 0 !important;
+}
+
+footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--space-sm) var(--space-md);
+    background: var(--color-surface);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    border: 0px solid var(--color-border);
+    gap: var(--space-md);
+    min-height: 50px;
+    z-index: 10;
+}
+
+.footer-left,
+.footer-right {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+}
+
+#overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(2px);
+    z-index: 9999998;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity var(--transition-base), visibility var(--transition-base);
+    pointer-events: none;
+}
+
+body.disabled #overlay {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}

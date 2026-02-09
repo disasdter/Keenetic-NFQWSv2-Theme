@@ -1,37 +1,22 @@
 {
-  "name": "nfqws-keenetic",
-  "short_name": "nfqws-keenetic",
-  "description": "Modern web interface for nfqws/nfqws2-keenetic configuration with multi-language support",
-  "start_url": "/index.html",
+  "name": "nfqws-keenetic-web",
+  "short_name": "nfqws-keenetic-web",
+  "start_url": "/",
   "display": "standalone",
-  "background_color": "#0a0a0a",
-  "theme_color": "#007aff",
+  "background_color": "#0175C2",
+  "theme_color": "#FFFFFF",
   "orientation": "any",
   "prefer_related_applications": false,
-  "categories": ["network", "utilities", "productivity"],
-  "lang": "en",
-  "dir": "ltr",
-  "scope": "/",
-  "id": "/",
-  "display_override": ["window-controls-overlay", "minimal-ui"],
   "icons": [
     {
-      "src": "/icon-192.png",
+      "src": "/icon.png",
       "sizes": "192x192",
-      "type": "image/png",
-      "purpose": "any maskable"
+      "type": "image/png"
     },
     {
-      "src": "/icon-512.png",
+      "src": "/icon.png",
       "sizes": "512x512",
-      "type": "image/png",
-      "purpose": "any maskable"
-    },
-    {
-      "src": "/icon.svg",
-      "sizes": "any",
-      "type": "image/svg+xml",
-      "purpose": "any"
+      "type": "image/png"
     }
   ]
 }
