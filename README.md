@@ -29,7 +29,7 @@
 
 ### 1. Подготовка файлов NFQWS
 - Скачайте и установите **nfqws2-keenetic** с [репозитория](https://github.com/nfqws).
-- Скачайте файлы проекта **nfqws2-theme** с [репозитория](https://github.com/disasdter/Keenetic-NFQWS2-Theme).
+- Скачайте файлы проекта **nfqws2-theme** с [репозитория](https://github.com/disasdter/Keenetic-NFQWSv2-Theme).
 - Распакуйте архив (если требуется).
 
 ### 2. Подключение к маршрутизатору
