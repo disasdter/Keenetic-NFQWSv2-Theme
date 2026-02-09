@@ -422,6 +422,13 @@ body.running #stop,
 }
 
 /* Editor */
+.filename-container {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex: 1;
+}
+
 .filename {
     font-family: var(--font-mono);
     font-size: 13px;
@@ -430,6 +437,14 @@ body.running #stop,
     background: var(--color-surface);
     border-radius: var(--radius-sm);
     border: 0px solid var(--color-border-light);
+    white-space: nowrap;
+}
+
+#line-count {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    color: var(--color-text-secondary);
+    white-space: nowrap;
 }
 
 #check-availability {
@@ -508,6 +523,7 @@ body.running #stop,
     background: var(--color-surface) !important;
     color: var(--color-text) !important;
     z-index: 2;
+    padding-bottom: 20px !important; /* Исправление для последней строки */
 }
 
 /* Восстанавливаем нормальное позиционирование строк */
@@ -538,6 +554,9 @@ body.running #stop,
     vertical-align: top !important;
     position: relative !important;
     top: 0 !important;
+    min-width: 3em !important; /* Минимум 3 символа */
+    text-align: right !important;
+    padding-right: 10px !important;
 }
 
 /* КРИТИЧЕСКОЕ ИСПРАВЛЕНИЕ: Исправляем позиционирование врапперов */
@@ -737,6 +756,11 @@ body.running #stop,
     background: var(--color-surface-alt);
     border-radius: var(--radius-sm);
     border: 0px solid var(--color-border-light);
+    margin-left: 4px;
+}
+
+.footer-version:first-of-type {
+    margin-left: 0;
 }
 
 /* Popups */
@@ -1212,6 +1236,7 @@ body:not(.running) #start {
         line-height: 1.7em !important;
         height: 1.7em !important;
         font-size: 13px !important;
+        min-width: 3em !important;
     }
     
     .CodeMirror-cursor {

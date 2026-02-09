@@ -119,7 +119,8 @@ class UI {
                 clearLog: "Clear log",
                 deleteFile: "Delete file",
                 editFile: "Edit file",
-                retryCheck: "Retry Check"
+                retryCheck: "Retry Check",
+                lines: "Lines"
             };
         }
     }
@@ -172,6 +173,7 @@ class UI {
 
         this.editor.on('change', () => {
             this.checkForChanges();
+            this.updateLineCount(); // Обновляем счетчик строк при изменении
         });
         
         this.editor.on('focus', () => {
@@ -184,6 +186,17 @@ class UI {
                 this.editor.refresh();
             }, 100);
         });
+    }
+
+    // Метод для обновления счетчика строк
+    updateLineCount() {
+        if (!this.editor) return;
+        
+        const lineCount = this.editor.lineCount();
+        const lineCountElement = document.getElementById('line-count');
+        if (lineCountElement) {
+            lineCountElement.textContent = `${this.translations.lines || 'Lines'}: ${lineCount}`;
+        }
     }
 
     checkForChanges() {
@@ -938,12 +951,13 @@ class UI {
                 document.body.classList.add('authenticated');
                 localStorage.setItem('hasSession', 'true');
                 this.setStatus(response.service);
-                this.setTitle(this.nfqws2 ? 'Keenetic NFQWS 2' : 'Keenetic NFQWS');
+                this.setTitle(this.nfqws2 ? 'Keenetic NFQWS 2' : 'Keenetic NFQWS 2');
                 
-                // Обновляем версию
+                // Обновляем версии раздельно
                 if (response.version) {
-                    document.getElementById('version').textContent = `v${response.version}`;
+                    document.getElementById('version-nfqws').textContent = `v${response.version}`;
                 }
+                document.getElementById('version-theme').textContent = 'v1.0';
                 
                 await this.loadFiles();
             } else if (response && response.status === 401) {
@@ -1038,6 +1052,9 @@ async loadFiles() {
                 this.historyManager.updateCurrentFile(filename);
             }
             
+            // Обновляем счетчик строк
+            this.updateLineCount();
+            
             this.editor.focus();
         } catch (error) {
             console.error('Error loading file:', error);
@@ -1098,7 +1115,7 @@ async loadFiles() {
         if (!confirm) return;
 
         const success = await this.showProcessing(
-            `${this.translations.executing || 'Executing'} ${this.nfqws2 ? 'Keenetic NFQWS 2' : 'Keenetic NFQWS'} ${action}`,
+            `${this.translations.executing || 'Executing'} ${this.nfqws2 ? 'Keenetic NFQWS 2' : 'Keenetic NFQWS 2'} ${action}`,
             () => this.serviceActionRequest(action),
             this.translations.processing || 'Processing'
         );
@@ -1122,10 +1139,10 @@ async loadFiles() {
                     if (result.version) {
                         versionText = `v${result.version}`;
                     }
-                    document.getElementById('version').textContent = versionText;
+                    document.getElementById('version-nfqws').textContent = versionText;
                     
                     this.nfqws2 = result.nfqws2 || false;
-                    this.setTitle(this.nfqws2 ? 'Keenetic NFQWS 2' : 'Keenetic NFQWS');
+                    this.setTitle(this.nfqws2 ? 'Keenetic NFQWS 2' : 'Keenetic NFQWS 2');
                 }
                 
                 setTimeout(() => window.location.reload(), 2000);

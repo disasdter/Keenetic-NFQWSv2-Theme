@@ -97,5 +97,6 @@
     "selectWarning": "Service will be stopped",
     "loading": "Loading...",
     "switching": "Switching version...",
-    "selecting": "Selecting version..."
+    "selecting": "Selecting version...",
+    "lines": "Lines"
 }

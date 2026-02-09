@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Keenetic NFQWS</title>
+    <title>Keenetic NFQWS 2</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
     <link rel="apple-touch-icon" href="icon.png">
@@ -75,20 +75,25 @@
                     if (data.version) {
                         versionText = `v${data.version}`;
                     }
-                    document.getElementById('version').textContent = versionText;
+                    // Разделяем версии
+                    document.getElementById('version-nfqws').textContent = versionText;
+                    document.getElementById('version-theme').textContent = 'v1.0';
                     
                     // Устанавливаем заголовок
-                    const title = data.nfqws2 ? 'Keenetic NFQWS 2' : 'Keenetic NFQWS';
+                    const title = data.nfqws2 ? 'Keenetic NFQWS 2' : 'Keenetic NFQWS 2';
                     const logoElement = document.querySelector('.logo');
                     logoElement.innerHTML = `<span id="nfqws">${title}</span> <span id="status"></span>`;
                 } else {
-                    document.getElementById('version').textContent = 'vunknown';
+                    document.getElementById('version-nfqws').textContent = 'vunknown';
+                    document.getElementById('version-theme').textContent = 'v1.0';
                 }
             } else {
-                document.getElementById('version').textContent = 'vunknown';
+                document.getElementById('version-nfqws').textContent = 'vunknown';
+                document.getElementById('version-theme').textContent = 'v1.0';
             }
         } catch (error) {
-            document.getElementById('version').textContent = 'vunknown';
+            document.getElementById('version-nfqws').textContent = 'vunknown';
+            document.getElementById('version-theme').textContent = 'v1.0';
         }
     }
     
@@ -98,7 +103,7 @@
 
 <header>
     <h1 class="logo">
-        <span id="nfqws">Keenetic NFQWS</span> <span id="status"></span>
+        <span id="nfqws">Keenetic NFQWS 2</span> <span id="status"></span>
     </h1>
     <div class="header-controls">
         <!-- Кнопка Save - скрыта по умолчанию, показывается при изменении -->
@@ -175,7 +180,10 @@
 <article>
     <div class="editor-container">
         <div class="editor-toolbar">
-            <span class="filename" id="current-filename">No file selected</span>
+            <div class="filename-container">
+                <span class="filename" id="current-filename">No file selected</span>
+                <span id="line-count" style="margin-left: 12px; font-family: var(--font-mono); font-size: 13px; color: var(--color-text-secondary);"></span>
+            </div>
             <div class="editor-actions">
                 <!-- Кнопка проверки доступности - добавляем data-type для фильтрации -->
                 <button class="button" id="check-availability" data-type="list-only" style="display: none;">
@@ -209,14 +217,14 @@
 
 <footer>
     <div class="footer-left">
-        <a class="footer-tab" href="https://github.com/nfqws/nfqws-keenetic/" target="_blank">
+        <a class="footer-tab" href="https://github.com/nfqws/" target="_blank">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
             </svg>
             NFQWS 2
         </a>
-		
-		 <a class="footer-tab" href="https://github.com/disasdter/Keenetic-NFQWSv2-Theme" target="_blank">
+        
+        <a class="footer-tab" href="https://github.com/disasdter/Keenetic-NFQWSv2-Theme" target="_blank">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
             </svg>
@@ -256,8 +264,11 @@
             </svg>
         </span>
         
-        <!-- Version -->
-        <span id="version" class="footer-version">vunknown</span>
+        <!-- Version NFQWS -->
+        <span id="version-nfqws" class="footer-version">vunknown</span>
+        
+        <!-- Version Theme -->
+        <span id="version-theme" class="footer-version">v1.0</span>
     </div>
 </footer>
 
